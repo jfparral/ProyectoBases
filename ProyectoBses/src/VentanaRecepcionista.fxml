@@ -10,6 +10,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -17,7 +20,7 @@
    <children>
       <TabPane layoutY="52.0" prefHeight="491.0" prefWidth="787.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Nuevo cliente">
+          <Tab fx:id="ventNuevoCliente" text="Nuevo cliente">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -61,32 +64,45 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="189.0" layoutY="38.0" prefHeight="25.0" prefWidth="523.0" />
-                        <TextField layoutX="189.0" layoutY="273.0" prefHeight="25.0" prefWidth="523.0" />
-                        <TextField layoutX="189.0" layoutY="132.0" prefHeight="25.0" prefWidth="523.0" />
-                        <TextField layoutX="189.0" layoutY="85.0" prefHeight="25.0" prefWidth="523.0" />
-                        <DatePicker layoutX="187.0" layoutY="179.0" prefHeight="25.0" prefWidth="527.0" />
-                        <TextField layoutX="189.0" layoutY="367.0" prefHeight="25.0" prefWidth="523.0" />
-                        <TextField layoutX="189.0" layoutY="320.0" prefHeight="25.0" prefWidth="523.0" />
-                        <ComboBox layoutX="189.0" layoutY="231.0" prefWidth="150.0" />
-                        <Button layoutX="364.0" layoutY="423.0" mnemonicParsing="false" text="Ingresar" />
+                        <TextField fx:id="txtCedula" layoutX="189.0" layoutY="38.0" prefHeight="25.0" prefWidth="523.0" />
+                        <TextField fx:id="txtTelefono" layoutX="189.0" layoutY="273.0" prefHeight="25.0" prefWidth="523.0" />
+                        <TextField fx:id="txtApellidos" layoutX="189.0" layoutY="132.0" prefHeight="25.0" prefWidth="523.0" />
+                        <TextField fx:id="txtNombre" layoutX="189.0" layoutY="85.0" prefHeight="25.0" prefWidth="523.0" />
+                        <DatePicker fx:id="date" layoutX="187.0" layoutY="179.0" prefHeight="25.0" prefWidth="527.0" />
+                        <TextField fx:id="txtCorreo" layoutX="189.0" layoutY="367.0" prefHeight="25.0" prefWidth="523.0" />
+                        <TextField fx:id="txtDireccion" layoutX="189.0" layoutY="320.0" prefHeight="25.0" prefWidth="523.0" />
+                        <ComboBox fx:id="comboSexo" layoutX="189.0" layoutY="231.0" prefWidth="150.0" />
+                        <Button fx:id="btnIngreso" layoutX="399.0" layoutY="410.0" mnemonicParsing="false" onAction="#nuevoCliente" text="Ingresar">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font></Button>
                         <Label layoutX="355.0" layoutY="220.0" prefHeight="47.0" prefWidth="177.0" text="Membresía:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="532.0" layoutY="231.0" prefWidth="150.0" />
+                        <ComboBox fx:id="comboMembresia" layoutX="532.0" layoutY="231.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Pagos">
+            <Tab fx:id="ventPagos" text="Pagos">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="185.0" layoutY="51.0" />
+                        <TextField fx:id="txtBusqueda" layoutX="185.0" layoutY="51.0" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
-                        <TableView layoutY="93.0" prefHeight="370.0" prefWidth="834.0">
+                        <TableView fx:id="tablePagos" layoutY="93.0" prefHeight="370.0" prefWidth="834.0">
                            <columns>
                               <TableColumn prefWidth="121.0" text="CEDULA" />
                               <TableColumn prefWidth="95.0" text="NOMBRE" />
@@ -96,8 +112,21 @@
                               <TableColumn prefWidth="151.0" text="FACTURA" />
                            </columns>
                         </TableView>
-                        <ChoiceBox layoutX="14.0" layoutY="51.0" prefWidth="150.0" />
-                        <Button layoutX="360.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
+                        <ChoiceBox fx:id="comboBusqueda" layoutX="14.0" layoutY="51.0" prefWidth="150.0" />
+                        <Button fx:id="btnBuscar" layoutX="360.0" layoutY="48.0" mnemonicParsing="false" onAction="#buscar" prefHeight="25.0" prefWidth="98.0" text="Buscar">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect></Button>
                      </children>
                   </AnchorPane>
               </content>
