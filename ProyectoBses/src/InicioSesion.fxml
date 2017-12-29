@@ -25,13 +25,13 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField id="txtUser" layoutX="294.0" layoutY="165.0">
+      <TextField fx:id="txtUser" layoutX="294.0" layoutY="165.0">
          <stylesheets>
             <URL value="@resources/bootstrap2.css" />
             <URL value="@resources/bootstrap3.css" />
          </stylesheets></TextField>
-      <TextField id="txtContra" layoutX="294.0" layoutY="227.0" prefHeight="30.0" prefWidth="151.0" />
-      <ChoiceBox id="choEmpl" layoutX="294.0" layoutY="287.0" prefHeight="30.0" prefWidth="151.0">
+      <TextField fx:id="txtContra" layoutX="294.0" layoutY="227.0" prefHeight="30.0" prefWidth="151.0" />
+      <ChoiceBox fx:id="choEmpl" layoutX="294.0" layoutY="287.0" prefHeight="30.0" prefWidth="151.0">
          <effect>
             <Lighting>
                <bumpInput>
@@ -47,7 +47,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button id="btnIngreso" layoutX="249.0" layoutY="340.0" mnemonicParsing="false" text="Ingresar">
+      <Button fx:id="btnIngreso" layoutX="249.0" layoutY="340.0" mnemonicParsing="false" onAction="#ingresar" text="Ingresar">
          <effect>
             <Lighting>
                <bumpInput>

@@ -131,6 +131,33 @@
                   </AnchorPane>
               </content>
             </Tab>
+            <Tab fx:id="tabNuebaMembresia" text="Nueva membresía">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="39.0" prefHeight="29.0" prefWidth="188.0" text="Nombre:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="141.0" prefHeight="29.0" prefWidth="188.0" text="Precio:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="94.0" prefHeight="29.0" prefWidth="188.0" text="Duración:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="158.0" layoutY="41.0" prefHeight="25.0" prefWidth="399.0" />
+                        <TextField layoutX="158.0" layoutY="96.0" prefHeight="25.0" prefWidth="399.0" />
+                        <TextField layoutX="158.0" layoutY="143.0" prefHeight="25.0" prefWidth="399.0" />
+                        <Button layoutX="364.0" layoutY="206.0" mnemonicParsing="false" text="Ingresar" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>
