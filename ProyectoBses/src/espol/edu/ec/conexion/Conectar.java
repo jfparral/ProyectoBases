@@ -1,5 +1,5 @@
 
-package clases;
+package espol.edu.ec.conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

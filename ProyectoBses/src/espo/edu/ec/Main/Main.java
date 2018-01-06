@@ -1,3 +1,5 @@
+package espo.edu.ec.Main;
+
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -28,7 +30,7 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("InicioSesion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/InicioSesion.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("BIENVENIDO");
         stage.setResizable(false);

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReportesController">
+<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.ReportesController">
    <children>
       <TabPane layoutY="43.0" prefHeight="552.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>

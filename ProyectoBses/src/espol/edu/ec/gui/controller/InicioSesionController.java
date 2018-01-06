@@ -1,3 +1,5 @@
+package espol.edu.ec.gui.controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -38,7 +40,7 @@ public class InicioSesionController implements Initializable {
     public void ingresar(ActionEvent event) throws IOException {
         //ESTA PARTE SOLO ES PARA FINES DE PRUEBA AQUI DEBE HABER LA CONDICION DE SI ES ADMINISTRADOR O RECEPCIONISTA
         ((Node)(event.getSource())).getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("VentanaRecepcionista.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/Reportes.fxml"));
         Stage stage=new Stage(); 
         Scene scene = new Scene(root);
         stage.setScene(scene);
