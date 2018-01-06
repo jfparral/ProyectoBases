@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".ReportesController">
+<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReportesController">
    <children>
       <TabPane layoutY="43.0" prefHeight="552.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -38,7 +38,7 @@
                           </columns>
                         </TableView>
                         <ChoiceBox fx:id="choBusuedaInsumoCliente" layoutX="18.0" layoutY="33.0" prefWidth="150.0" />
-                        <Button fx:id="btnBuscarInsumoCliente" layoutX="402.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
+                        <Button fx:id="btnBuscarInsumoCliente" layoutX="402.0" layoutY="33.0" mnemonicParsing="false" onAction="#buscarInsumoCliente" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
                         <Pane layoutY="256.0" prefHeight="268.0" prefWidth="834.0">
                            <children>
                               <Label alignment="CENTER" layoutX="319.0" layoutY="14.0" prefHeight="17.0" prefWidth="147.0" text="Detalles de gastos" />
@@ -52,7 +52,7 @@
                               </TableView>
                               <Button fx:id="btnImprimirInsumoCliente" layoutX="362.0" layoutY="229.0" mnemonicParsing="false" text="Imprimir" />
                               <Label layoutX="528.0" layoutY="200.0" prefHeight="17.0" prefWidth="97.0" text="Valor final:" />
-                              <Label layoutX="625.0" layoutY="200.0" prefHeight="17.0" prefWidth="143.0" />
+                              <Label fx:id="lblValorFinal" layoutX="625.0" layoutY="200.0" prefHeight="17.0" prefWidth="143.0" />
                            </children>
                         </Pane>
                      </children>
@@ -66,7 +66,7 @@
                         <TextField fx:id="txtSalario" layoutX="186.0" layoutY="58.0" />
                         <Label alignment="CENTER" layoutX="25.0" layoutY="21.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
                         <ChoiceBox fx:id="choSalario" layoutX="25.0" layoutY="58.0" prefWidth="150.0" />
-                        <Button fx:id="btnBuscarSalario" layoutX="344.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
+                        <Button fx:id="btnBuscarSalario" layoutX="344.0" layoutY="58.0" mnemonicParsing="false" onAction="#buscarSalario" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
                         <TableView fx:id="tableBuscarSalario" layoutY="101.0" prefHeight="182.0" prefWidth="834.0">
                           <columns>
                             <TableColumn prefWidth="136.0" text="CEDULA" />
@@ -102,7 +102,7 @@
                         <DatePicker fx:id="dateFin" layoutX="266.0" layoutY="59.0" />
                         <Label layoutX="35.0" layoutY="27.0" prefHeight="17.0" prefWidth="171.0" text="Fecha inicio" />
                         <Label layoutX="268.0" layoutY="27.0" prefHeight="17.0" prefWidth="171.0" text="Fecha fin" />
-                        <Button fx:id="btnBuscarVenta" layoutX="518.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" text="Buscar" />
+                        <Button fx:id="btnBuscarVenta" layoutX="518.0" layoutY="59.0" mnemonicParsing="false" onAction="#buscarVentaInsumos" prefHeight="25.0" prefWidth="89.0" text="Buscar" />
                         <TableView fx:id="tableVenta" layoutY="126.0" prefHeight="200.0" prefWidth="834.0">
                           <columns>
                             <TableColumn prefWidth="217.0" text="Insumo" />
@@ -133,7 +133,7 @@
                         <Label layoutX="38.0" layoutY="301.0" prefHeight="26.0" prefWidth="144.0" text="Teléfono: " />
                         <TextField fx:id="txtTelefono" layoutX="182.0" layoutY="301.0" prefHeight="25.0" prefWidth="372.0" />
                         <ChoiceBox fx:id="choSexo" layoutX="182.0" layoutY="197.0" prefHeight="25.0" prefWidth="372.0" />
-                        <Button fx:id="btnAgrecarEmpleado" layoutX="342.0" layoutY="411.0" mnemonicParsing="false" text="Agregar" />
+                        <Button fx:id="btnAgrecarEmpleado" layoutX="342.0" layoutY="411.0" mnemonicParsing="false" onAction="#agregarNevoEmpleado" text="Agregar" />
                      </children>
                   </AnchorPane>
               </content>
@@ -142,7 +142,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnAsignar" layoutX="390.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
+                        <Button fx:id="btnAsignar" layoutX="390.0" layoutY="54.0" mnemonicParsing="false" onAction="#asignarEmpleo" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
                         <TableView fx:id="tableAsignar" layoutX="-1.0" layoutY="101.0" prefHeight="175.0" prefWidth="834.0">
                            <columns>
                               <TableColumn prefWidth="121.0" text="CEDULA" />
@@ -193,7 +193,7 @@
                         <TextField fx:id="txtModifcarTelefono" layoutX="231.0" layoutY="416.0" prefHeight="25.0" prefWidth="372.0" />
                         <ChoiceBox fx:id="choSexoModificarEmpleado" layoutX="231.0" layoutY="365.0" prefHeight="25.0" prefWidth="372.0" />
                         <Button fx:id="btnModificarEmpleado" layoutX="384.0" layoutY="484.0" mnemonicParsing="false" text="Modificar" />
-                        <Button fx:id="btnBuscarModificar" layoutX="382.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
+                        <Button fx:id="btnBuscarModificar" layoutX="382.0" layoutY="50.0" mnemonicParsing="false" onAction="#buscarModificarEmpleado" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
                         <TableView fx:id="tableModificar" layoutY="97.0" prefHeight="175.0" prefWidth="834.0">
                            <columns>
                               <TableColumn prefWidth="121.0" text="CEDULA" />
@@ -204,7 +204,7 @@
                               <TableColumn prefWidth="198.0" text="CORREO" />
                            </columns>
                         </TableView>
-                        <TextField fx:id="txtModificar" layoutX="193.0" layoutY="50.0" />
+                        <TextField fx:id="txtModificarBuscar" layoutX="193.0" layoutY="50.0" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
                         <ChoiceBox fx:id="choBusquedaModificar" layoutX="14.0" layoutY="50.0" prefWidth="150.0" />
                      </children>
@@ -219,8 +219,8 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="150.0">
                                  <children>
-                                    <Label fx:id="lblNuevoInsumo" layoutX="7.0" layoutY="14.0" prefHeight="44.0" prefWidth="222.0" text="NUEVO INSUMO" />
-                                    <Label fx:id="lblModificarInsumo" layoutX="6.0" layoutY="58.0" prefHeight="44.0" prefWidth="215.0" text="MODIFICAR INSUMO" />
+                                    <Label fx:id="lblNuevoInsumo" layoutX="7.0" layoutY="14.0" onDragDetected="#ventanaNuevoInsumo" prefHeight="44.0" prefWidth="222.0" text="NUEVO INSUMO" />
+                                    <Label fx:id="lblModificarInsumo" layoutX="6.0" layoutY="58.0" onDragDetected="#ventanaModificarInsumo" prefHeight="44.0" prefWidth="215.0" text="MODIFICAR INSUMO" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="437.0" prefWidth="572.0">
@@ -233,11 +233,11 @@
                                     <Label layoutX="28.0" layoutY="261.0" prefHeight="29.0" prefWidth="111.0" text="ID" />
                                     <TextField fx:id="txtPrecioInsumos" layoutX="139.0" layoutY="318.0" prefHeight="25.0" prefWidth="368.0" />
                                     <TextArea fx:id="txtDescripcionInsumos" layoutX="140.0" layoutY="345.0" prefHeight="122.0" prefWidth="368.0" />
-                                    <Button fx:id="btnModificar" layoutX="337.0" layoutY="481.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Modificar" />
+                                    <Button fx:id="btnModificar" layoutX="337.0" layoutY="481.0" mnemonicParsing="false" onAction="#modificarInsumo" prefHeight="25.0" prefWidth="69.0" text="Modificar" />
                                     <TextField fx:id="txtBuscarInsumo" layoutX="188.0" layoutY="26.0" />
                                     <Label alignment="CENTER" layoutX="28.0" layoutY="1.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
                                     <ChoiceBox fx:id="choModInsumo" layoutX="28.0" layoutY="26.0" prefWidth="150.0" />
-                                    <Button fx:id="btnBuscarInsumos" layoutX="358.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
+                                    <Button fx:id="btnBuscarInsumos" layoutX="358.0" layoutY="26.0" mnemonicParsing="false" onAction="#buscarModifiarInsumo" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
                                     <TableView fx:id="tblInsumos" layoutX="1.0" layoutY="79.0" prefHeight="166.0" prefWidth="580.0">
                                       <columns>
                                         <TableColumn prefWidth="156.0" text="ID" />
@@ -245,7 +245,7 @@
                                           <TableColumn prefWidth="187.0" text="PRECIO" />
                                       </columns>
                                     </TableView>
-                                    <Button fx:id="btnNuevo" layoutX="268.0" layoutY="481.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Nuevo" />
+                                    <Button fx:id="btnNuevo" layoutX="268.0" layoutY="481.0" mnemonicParsing="false" onAction="#agregarNuevoInsumo" prefHeight="25.0" prefWidth="69.0" text="Nuevo" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -260,7 +260,7 @@
                         <TextField fx:id="txtEliminarInsumo" layoutX="194.0" layoutY="53.0" />
                         <Label alignment="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
                         <ChoiceBox fx:id="choBusquedaEliminar" layoutX="25.0" layoutY="53.0" prefWidth="150.0" />
-                        <Button fx:id="btnBuscarEliminarInsumo" layoutX="381.0" layoutY="53.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
+                        <Button fx:id="btnBuscarEliminarInsumo" layoutX="381.0" layoutY="53.0" mnemonicParsing="false" onAction="#buscarEliminarInsumo" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
                         <TableView fx:id="tblEliminarInsumo" layoutX="-7.0" layoutY="120.0" prefHeight="175.0" prefWidth="834.0">
                           <columns>
                             <TableColumn prefWidth="195.0" text="ID" />
@@ -286,5 +286,6 @@
                </light>
             </Lighting>
          </effect></Label>
+      <Button layoutX="733.0" layoutY="10.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" />
    </children>
 </AnchorPane>

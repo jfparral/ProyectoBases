@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".VentanaRecepcionistaController">
+<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VentanaRecepcionistaController">
    <children>
       <TabPane layoutY="52.0" prefHeight="491.0" prefWidth="787.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -102,7 +102,7 @@
                      <children>
                         <TextField fx:id="txtBusqueda" layoutX="185.0" layoutY="51.0" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
-                        <TableView fx:id="tablePagos" layoutY="93.0" prefHeight="370.0" prefWidth="834.0">
+                        <TableView fx:id="tablePagos" layoutY="93.0" onKeyPressed="#seleccionPago" prefHeight="370.0" prefWidth="834.0">
                            <columns>
                               <TableColumn prefWidth="121.0" text="CEDULA" />
                               <TableColumn prefWidth="95.0" text="NOMBRE" />
@@ -150,15 +150,16 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="158.0" layoutY="41.0" prefHeight="25.0" prefWidth="399.0" />
-                        <TextField layoutX="158.0" layoutY="96.0" prefHeight="25.0" prefWidth="399.0" />
-                        <TextField layoutX="158.0" layoutY="143.0" prefHeight="25.0" prefWidth="399.0" />
-                        <Button layoutX="364.0" layoutY="206.0" mnemonicParsing="false" text="Ingresar" />
+                        <TextField fx:id="txtNombreMembresia" layoutX="158.0" layoutY="41.0" prefHeight="25.0" prefWidth="399.0" />
+                        <TextField fx:id="txtDuracion" layoutX="158.0" layoutY="96.0" prefHeight="25.0" prefWidth="399.0" />
+                        <TextField fx:id="txtPrecio" layoutX="158.0" layoutY="143.0" prefHeight="25.0" prefWidth="399.0" />
+                        <Button fx:id="nuevaMembresia" layoutX="364.0" layoutY="206.0" mnemonicParsing="false" onAction="#ingresoMembresia" text="Ingresar" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
         </tabs>
       </TabPane>
+      <Button fx:id="closeSesion" layoutX="662.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="25.0" prefWidth="118.0" text="Cerrar Sesión" />
    </children>
 </AnchorPane>
