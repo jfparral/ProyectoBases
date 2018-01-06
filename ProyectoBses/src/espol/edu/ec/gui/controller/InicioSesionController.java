@@ -10,6 +10,8 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,9 +34,11 @@ public class InicioSesionController implements Initializable {
     @FXML
     private TextField txtContra;
     @FXML
-    private ChoiceBox<?> choEmpl;
+    private ChoiceBox<String> choEmpl;
     @FXML
     private Button btnIngreso;
+    
+    ObservableList<String> lista=FXCollections.observableArrayList("Administrador", "Recepcionista", "Cliente"); 
     
     @FXML
     public void ingresar(ActionEvent event) throws IOException {
@@ -47,11 +51,14 @@ public class InicioSesionController implements Initializable {
         stage.setResizable(false);
         stage.setTitle("BIENVENIDO");
         stage.show();
+       
     }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        choEmpl.setValue("Administrador");
+         choEmpl.setItems(lista);
     }    
     
 }

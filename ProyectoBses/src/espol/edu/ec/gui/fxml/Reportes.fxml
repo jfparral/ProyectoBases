@@ -16,8 +16,9 @@
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.ReportesController">
+<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.ReportesController">
    <children>
       <TabPane layoutY="43.0" prefHeight="552.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -285,7 +286,10 @@
                   <Light.Distant color="#f21111" />
                </light>
             </Lighting>
-         </effect></Label>
+         </effect>
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <Button layoutX="733.0" layoutY="10.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" />
    </children>
 </AnchorPane>

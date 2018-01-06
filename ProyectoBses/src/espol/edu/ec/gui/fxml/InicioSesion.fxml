@@ -8,17 +8,24 @@
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.InicioSesionController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.InicioSesionController">
    <children>
-      <Label layoutX="96.0" layoutY="154.0" prefHeight="46.0" prefWidth="127.0" text="Usuario:">
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../../../../../resources/fondo.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="96.0" layoutY="154.0" prefHeight="46.0" prefWidth="127.0" text="Usuario:" textFill="WHITE">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="96.0" layoutY="216.0" prefHeight="46.0" prefWidth="127.0" text="Contraseña:">
+      <Label layoutX="80.0" layoutY="216.0" prefHeight="46.0" prefWidth="143.0" text="Contraseña:" textFill="WHITE">
          <font>
             <Font size="22.0" />
          </font>
@@ -39,12 +46,18 @@
                   <Light.Distant />
                </light>
             </Lighting>
-         </effect></ChoiceBox>
-      <Label layoutX="96.0" layoutY="277.0" prefHeight="46.0" prefWidth="127.0" text="Empleado:">
+         </effect>
+      </ChoiceBox>
+      <Label layoutX="96.0" layoutY="277.0" prefHeight="46.0" prefWidth="127.0" text="Empleado:" textFill="WHITE">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <Button fx:id="btnIngreso" layoutX="249.0" layoutY="341.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="37.0" prefWidth="91.0" text="Ingresar" />
+      <ImageView fitHeight="141.0" fitWidth="200.0" layoutX="200.0" layoutY="14.0">
+         <image>
+            <Image url="@../../../../../resources/GYM.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
