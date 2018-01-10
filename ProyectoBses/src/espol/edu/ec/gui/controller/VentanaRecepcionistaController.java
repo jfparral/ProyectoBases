@@ -181,6 +181,7 @@ public class VentanaRecepcionistaController implements Initializable {
         choTipo.setDisable(true);
         choFormaPago.setDisable(true);
         nuevaMembresia.setDisable(true);
+        
     }    
 
 }

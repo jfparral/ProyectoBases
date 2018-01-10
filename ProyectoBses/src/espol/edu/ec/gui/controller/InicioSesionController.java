@@ -38,20 +38,31 @@ public class InicioSesionController implements Initializable {
     @FXML
     private Button btnIngreso;
     
-    ObservableList<String> lista=FXCollections.observableArrayList("Administrador", "Recepcionista", "Cliente"); 
+    ObservableList<String> lista=FXCollections.observableArrayList("Administrador", "Recepcionista"); 
     
     @FXML
     public void ingresar(ActionEvent event) throws IOException {
         //ESTA PARTE SOLO ES PARA FINES DE PRUEBA AQUI DEBE HABER LA CONDICION DE SI ES ADMINISTRADOR O RECEPCIONISTA
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/Reportes.fxml"));
-        Stage stage=new Stage(); 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("BIENVENIDO");
-        stage.show();
-       
+        if("Recepcionista".equals(choEmpl.getValue())){
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/VentanaRecepcionista.fxml"));
+            Stage stage=new Stage(); 
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("BIENVENIDO");
+            stage.show();
+        }else if("Administrador".equals(choEmpl.getValue())){
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/Reportes.fxml"));
+            Stage stage=new Stage(); 
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("BIENVENIDO");
+            stage.show();
+        }
+        
     }
     
     
