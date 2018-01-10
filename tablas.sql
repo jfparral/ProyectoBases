@@ -7,4 +7,7 @@ create table implemento(id_implemento varchar(10) primary key, iva varchar(10), 
 create table entrenamiento(id_entrenamiento varchar(10) primary key, id_cliente varchar(10), id_trabajador varchar(10));
 create table registro_membresia(id_registromembresia varchar(10) primary key, duracion varchar(30), estado varchar(20), precio double, membrecia varchar(10), fecha_registro date);
 create table detalle_compra(id_detalle_compra varchar(10) primary key, cantidad int, producto varchar(10), factura varchar(10), precio double);
-create table compra();
+create table compra(id_compra varchar(10) primary key, id_complemento varchar(10), id_trabajador varchar(10), id_cliente varchar(10), total double, descuento varchar(10));
+create table registro_admin(id_registro varchar(10) primary key, id_trabajador varchar(10), sueldo double, cargo varchar(50), horario varchar(100));
+create table forma_pago(id_pago varchar(10) primary key, id_compra varchar(10), forma varchar(20));
+create table rol_pago(id_rol varchar(10) primary key, id_trabajador varchar(10), fecha_pago date, comision varchar(10), forma_pago varchar(20), seguro_social varchar(50), subtotal double, total double);
