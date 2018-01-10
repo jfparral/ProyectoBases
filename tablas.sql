@@ -1,0 +1,10 @@
+create table cliente(cedula int primary key, nombre varchar(10), apellido varchar(10), fecha_nac date, sexo varchar(9), telefono varchar(20), direccion varchar(50), correo varchar(30));
+create table progreso(id_cliente varchar(10), id_trabajador varchar(10), progreso varchar(50), primary key (id_cliente,id_trabajador));
+create table trabajador(cedula varchar(10) primary key, nombre varchar(20), apellido varchar(20), fecha_nac date, sexo varchar(9), telefono varchar(20), direccion varchar(50), correo varchar(30));
+create table membresia(id_membresia varchar(10) primary key, id_cliente varchar(10), fecha_inicio date, fecha_fin date, tipo varchar(15), forma_pago varchar(15));
+create table detalle(id_detalle varchar(10) primary key, descripcion varchar(50), producto varchar(10));
+create table implemento(id_implemento varchar(10) primary key, iva varchar(10), fecha_venta date, fecha_caducidad date, cant_inventario varchar(20));
+create table entrenamiento(id_entrenamiento varchar(10) primary key, id_cliente varchar(10), id_trabajador varchar(10));
+create table registro_membresia(id_registromembresia varchar(10) primary key, duracion varchar(30), estado varchar(20), precio double, membrecia varchar(10), fecha_registro date);
+create table detalle_compra(id_detalle_compra varchar(10) primary key, cantidad int, producto varchar(10), factura varchar(10), precio double);
+create table compra();
