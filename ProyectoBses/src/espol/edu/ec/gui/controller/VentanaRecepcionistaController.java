@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,56 +34,101 @@ import javafx.stage.Stage;
  */
 public class VentanaRecepcionistaController implements Initializable {
 
-    @FXML
+     @FXML
     private Tab ventNuevoCliente;
+
     @FXML
     private TextField txtCedula;
+
     @FXML
     private TextField txtTelefono;
+
     @FXML
     private TextField txtApellidos;
+
     @FXML
     private TextField txtNombre;
+
     @FXML
     private DatePicker date;
+
     @FXML
     private TextField txtCorreo;
+
     @FXML
     private TextField txtDireccion;
+
     @FXML
     private ComboBox<?> comboSexo;
+
     @FXML
     private Button btnIngreso;
+
     @FXML
     private ComboBox<?> comboMembresia;
+
     @FXML
     private Tab ventPagos;
+
     @FXML
     private TextField txtBusqueda;
+
     @FXML
     private TableView<?> tablePagos;
+
     @FXML
     private ChoiceBox<?> comboBusqueda;
+
     @FXML
     private Button btnBuscar;
+
     @FXML
     private Tab tabNuebaMembresia;
-    @FXML
-    private TextField txtNombreMembresia;
-    @FXML
-    private TextField txtDuracion;
+
     @FXML
     private TextField txtPrecio;
+
     @FXML
     private Button nuevaMembresia;
+
+    @FXML
+    private TextField txtBusquedaMembresia;
+
+    @FXML
+    private ChoiceBox<?> comboBusquedaMembresia;
+
+    @FXML
+    private Button btnBuscar1;
+
+    @FXML
+    private TableView<?> tableNuevaMembresia;
+
+    @FXML
+    private Label lblTipo;
+
+    @FXML
+    private ChoiceBox<?> choTipo;
+
+    @FXML
+    private ChoiceBox<?> choFormaPago;
+
+    @FXML
+    private Label lblPago;
+
     @FXML
     private Button closeSesion;
+
     
     @FXML
     void buscar(ActionEvent event) {
 
     }
 
+    @FXML
+    void buscarMembresia(ActionEvent event) {
+
+    }
+    
     @FXML
     void ingresoMembresia(ActionEvent event) {
         
@@ -101,17 +147,40 @@ public class VentanaRecepcionistaController implements Initializable {
     }
     
     @FXML
-    void nuevoCliente(ActionEvent event) {
-        
+    public void nuevoCliente(ActionEvent event) {
+        cleanNuevoCliente();
     }
 
+    @FXML
+    void seleccionObjeto(KeyEvent event) {
+        
+    }
+    
     @FXML
     void seleccionPago(KeyEvent event) {
         
     }
+    
+    public void cleanNuevoCliente(){
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellidos.setText("");
+        date.setValue(null);
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtCorreo.setText("");
+    }
+    
+    public void cleanPagos(){
+        txtBusqueda.setText("");
+        tablePagos.getItems().clear();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        choTipo.setDisable(true);
+        choFormaPago.setDisable(true);
+        nuevaMembresia.setDisable(true);
     }    
-    
+
 }

@@ -25,6 +25,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -36,6 +39,10 @@ public class ReportesController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private AnchorPane paneInsumo;
+    @FXML
+    private Pane paneAsignarEmpleo;
     @FXML
     private Tab tabInsumosCliente;
     @FXML
@@ -182,6 +189,7 @@ public class ReportesController implements Initializable {
     @FXML
     void agregarNevoEmpleado(ActionEvent event) {
 
+        cleanAgregarEmpleado();
     }
 
     @FXML
@@ -191,7 +199,7 @@ public class ReportesController implements Initializable {
 
     @FXML
     void asignarEmpleo(ActionEvent event) {
-
+        paneAsignarEmpleo.setVisible(true);
     }
 
     @FXML
@@ -230,13 +238,19 @@ public class ReportesController implements Initializable {
     }
 
     @FXML
-    void ventanaModificarInsumo(MouseEvent event) {
-
+     void ventanaModificarInsumo(MouseEvent event)  {
+        btnBuscarInsumos.setDisable(false);
+        btnModificar.setVisible(true);
+        btnNuevo.setVisible(false);
+        cleanInsumos();
     }
 
     @FXML
-    void ventanaNuevoInsumo(MouseEvent event) {
-
+    void ventanaNuevoInsumo(MouseEvent event){
+        btnBuscarInsumos.setDisable(true);
+        btnModificar.setVisible(false);
+        btnNuevo.setVisible(true);
+        cleanInsumos();
     }
     
     @FXML
@@ -253,7 +267,44 @@ public class ReportesController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        btnBuscarInsumos.setDisable(true);
+        //paneInsumo.setVisible(false);
+        btnModificar.setVisible(false);
     }    
+    
+    public void cleanAgregarEmpleado(){
+        txtApellidos.setText("");
+        txtNombre.setText("");
+        txtCedula.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        dateNacimiento.setValue(null);
+        
+    }
+    
+    public void cleanAsignarEmpleo(){
+        txtBuscarAsignar.setText("");
+        txtSueldo.setText("");
+        txtHoraInicio.setText("");
+        txtHoraFin.setText("");
+    }
+    
+    public void cleanModificarEmpleado(){
+        txtModifcarApellido.setText("");
+        txtModifcarCedula.setText("");
+        txtModifcarCorreo.setText("");
+        txtModifcarNombre.setText("");
+        txtModifcarTelefono.setText("");
+        txtModificarBuscar.setText("");
+        dateModificarEmpleado.setValue(null);
+    }
+ 
+    public void cleanInsumos(){
+        txtBuscarInsumo.setText("");
+        txtID.setText("");
+        txtInsumoCliente.setText("");
+        txtInsumosName.setText("");
+        txtDescripcionInsumos.setText("");
+    }
     
 }
