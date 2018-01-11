@@ -4,6 +4,7 @@ package espol.edu.ec.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -15,7 +16,7 @@ public class Conectar {
     public static final String user="root";
     public static final String password="1214";
     public static final String url="jdbc:mysql://localhost:3306/tienda";
-
+    
     public Conectar() {
         com=null;
         try {

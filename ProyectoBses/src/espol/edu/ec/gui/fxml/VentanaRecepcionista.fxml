@@ -59,7 +59,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="12.0" layoutY="262.0" prefHeight="47.0" prefWidth="177.0" text="Teléfono:">
+                        <Label layoutX="12.0" layoutY="262.0" prefHeight="47.0" prefWidth="177.0" text="Celular:">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -86,12 +86,12 @@
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font></Button>
-                        <Label layoutX="355.0" layoutY="220.0" prefHeight="47.0" prefWidth="177.0" text="Membresía:">
+                        <Label layoutX="381.0" layoutY="220.0" prefHeight="47.0" prefWidth="177.0" text="Membresía:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="comboMembresia" layoutX="532.0" layoutY="231.0" prefWidth="150.0" />
+                        <ComboBox fx:id="comboMembresia" layoutX="564.0" layoutY="231.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
             </content>

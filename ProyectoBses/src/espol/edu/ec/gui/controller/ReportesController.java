@@ -10,6 +10,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -29,6 +31,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
@@ -188,20 +191,88 @@ public class ReportesController implements Initializable {
     
     @FXML
     void agregarNevoEmpleado(ActionEvent event) {
-
-        cleanAgregarEmpleado();
+        if(!VentanaRecepcionistaController.isNumeric(txtCedula.getText())
+                ||txtCedula.getText().length()!=10){
+            JOptionPane.showMessageDialog(null, "Cédula incorrecta");
+        }else if(txtApellidos.getText().isEmpty()||txtNombre.getText().isEmpty()
+                ||txtTelefono.getText().isEmpty()||txtCorreo.getText().isEmpty()
+                ||txtCedula.getText().isEmpty()||dateNacimiento.getValue().equals("")){
+            JOptionPane.showMessageDialog(null, "Faltan llenar campos");
+        }else if((!VentanaRecepcionistaController.isNumeric(txtTelefono.getText())
+                ||txtTelefono.getText().length()!=10)){
+            JOptionPane.showMessageDialog(null, "Celular incorrecto");
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+            cleanAgregarEmpleado();
+        }
+        
     }
 
     @FXML
     void agregarNuevoInsumo(ActionEvent event) {
-
+        if(txtID.getText().isEmpty()||txtInsumosName.getText().isEmpty()
+                ||txtPrecioInsumos.getText().isEmpty()||txtDescripcionInsumos.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campos incompletos");
+        }else if(!VentanaRecepcionistaController.esDecimal(txtPrecioInsumos.getText())){
+            JOptionPane.showMessageDialog(null, "Precio incorrecto\nEjemplo: 14.59");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+            cleanInsumos();
+        }
     }
 
     @FXML
+    void buscarEmpleado(ActionEvent event) {
+
+    }
+    
+    private boolean validarHora(String cadena) {
+        try {
+            LocalTime.parse(cadena);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+    
+    @FXML
     void asignarEmpleo(ActionEvent event) {
+        if(txtSueldo.getText().isEmpty()||txtHoraFin.getText().isEmpty()
+                ||txtHoraInicio.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campos incompletos");
+        }else if(!VentanaRecepcionistaController.esDecimal(txtSueldo.getText())){
+            JOptionPane.showMessageDialog(null, "Sueldo incorrecto\nEjemplo: 370.59");
+        }else if(!this.validarHora(txtHoraFin.getText())){
+            JOptionPane.showMessageDialog(null, "Hora fin incorrecto\nEjemplo: 15:30\nFormato 24 horas ");
+        }else if(!this.validarHora(txtHoraInicio.getText())){
+            JOptionPane.showMessageDialog(null, "Hora inicio incorrecto\nEjemplo: 08:30\nFormato 24 horas");
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+            cleanAsignarEmpleo();
+        }
+        
         paneAsignarEmpleo.setVisible(true);
     }
 
+    @FXML
+    void modificarEmpleado(ActionEvent event) {
+        if(txtModifcarApellido.getText().isEmpty()||txtModifcarCedula.getText().isEmpty()
+                ||txtModifcarCorreo.getText().isEmpty()||txtModifcarNombre.getText().isEmpty()
+                ||txtModifcarTelefono.getText().isEmpty()||dateModificarEmpleado.getValue().equals("")){
+            JOptionPane.showMessageDialog(null, "Faltan llenar campos");
+        }else if(!VentanaRecepcionistaController.isNumeric(txtModifcarCedula.getText())
+                ||txtModifcarCedula.getText().length()!=10){
+            JOptionPane.showMessageDialog(null, "Cédula incorrecta");
+        }else if(!VentanaRecepcionistaController.isNumeric(txtModifcarTelefono.getText())
+                ||txtModifcarTelefono.getText().length()!=10){
+            JOptionPane.showMessageDialog(null, "Celular incorrecto");
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+            cleanModificarEmpleado();
+        }
+    }
+    
     @FXML
     void buscarEliminarInsumo(ActionEvent event) {
 
@@ -234,7 +305,16 @@ public class ReportesController implements Initializable {
 
     @FXML
     void modificarInsumo(ActionEvent event) {
-
+        if(txtID.getText().isEmpty()||txtInsumosName.getText().isEmpty()
+                ||txtPrecioInsumos.getText().isEmpty()||txtDescripcionInsumos.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campos incompletos");
+        }else if(!VentanaRecepcionistaController.esDecimal(txtPrecioInsumos.getText())){
+            JOptionPane.showMessageDialog(null, "Precio incorrecto\nEjemplo: 14.59");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+            cleanInsumos();
+        }
     }
 
     @FXML
@@ -305,6 +385,7 @@ public class ReportesController implements Initializable {
         txtInsumoCliente.setText("");
         txtInsumosName.setText("");
         txtDescripcionInsumos.setText("");
+        txtPrecioInsumos.setText("");
     }
     
 }

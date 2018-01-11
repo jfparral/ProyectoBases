@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.ReportesController">
+<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.ReportesController">
    <children>
       <TabPane layoutY="43.0" prefHeight="552.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -33,7 +33,7 @@
                             <TableColumn prefWidth="121.0" text="CEDULA" />
                             <TableColumn prefWidth="95.0" text="NOMBRE" />
                               <TableColumn prefWidth="112.0" text="APELLIDO" />
-                              <TableColumn prefWidth="129.0" text="TELEFONO" />
+                              <TableColumn prefWidth="129.0" text="CELULAR" />
                               <TableColumn prefWidth="178.0" text="DIRECCION" />
                               <TableColumn prefWidth="198.0" text="CORREO" />
                           </columns>
@@ -74,7 +74,7 @@
                             <TableColumn prefWidth="124.0" text="NOMBRE" />
                               <TableColumn prefWidth="225.0" text="APELLIDOS" />
                               <TableColumn prefWidth="158.0" text="CORREO" />
-                              <TableColumn prefWidth="190.0" text="TELEFONO" />
+                              <TableColumn prefWidth="190.0" text="CELULAR" />
                           </columns>
                         </TableView>
                         <Pane layoutY="283.0" prefHeight="244.0" prefWidth="834.0">
@@ -131,7 +131,7 @@
                         <TextField fx:id="txtApellidos" layoutX="182.0" layoutY="93.0" prefHeight="25.0" prefWidth="372.0" />
                         <DatePicker fx:id="dateNacimiento" layoutX="182.0" layoutY="250.0" prefHeight="25.0" prefWidth="372.0" />
                         <Label layoutX="38.0" layoutY="346.0" prefHeight="26.0" prefWidth="144.0" text="Correo: " />
-                        <Label layoutX="38.0" layoutY="301.0" prefHeight="26.0" prefWidth="144.0" text="Teléfono: " />
+                        <Label layoutX="38.0" layoutY="301.0" prefHeight="26.0" prefWidth="144.0" text="Celular:" />
                         <TextField fx:id="txtTelefono" layoutX="182.0" layoutY="301.0" prefHeight="25.0" prefWidth="372.0" />
                         <ChoiceBox fx:id="choSexo" layoutX="182.0" layoutY="197.0" prefHeight="25.0" prefWidth="372.0" />
                         <Button fx:id="btnAgrecarEmpleado" layoutX="342.0" layoutY="411.0" mnemonicParsing="false" onAction="#agregarNevoEmpleado" text="Agregar" />
@@ -143,13 +143,13 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnAsignar" layoutX="390.0" layoutY="54.0" mnemonicParsing="false" onAction="#asignarEmpleo" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
+                        <Button fx:id="btnAsignar" layoutX="390.0" layoutY="54.0" mnemonicParsing="false" onAction="#buscarEmpleado" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
                         <TableView fx:id="tableAsignar" layoutX="-1.0" layoutY="101.0" prefHeight="175.0" prefWidth="834.0">
                            <columns>
                               <TableColumn prefWidth="121.0" text="CEDULA" />
                               <TableColumn prefWidth="95.0" text="NOMBRE" />
                               <TableColumn prefWidth="112.0" text="APELLIDO" />
-                              <TableColumn prefWidth="129.0" text="TELEFONO" />
+                              <TableColumn prefWidth="129.0" text="CELULAR" />
                               <TableColumn prefWidth="178.0" text="DIRECCION" />
                               <TableColumn prefWidth="198.0" text="CORREO" />
                            </columns>
@@ -166,9 +166,12 @@
                               <Label layoutX="46.0" layoutY="58.0" prefHeight="26.0" prefWidth="144.0" text="Cargo: " />
                               <TextField fx:id="txtSueldo" layoutX="190.0" layoutY="85.0" prefHeight="25.0" prefWidth="372.0" />
                               <ChoiceBox fx:id="choCargo" layoutX="190.0" layoutY="58.0" prefHeight="25.0" prefWidth="372.0" />
-                              <Button fx:id="btnAsignar" layoutX="350.0" layoutY="177.0" mnemonicParsing="false" text="Asignar" />
+                              <Button fx:id="btnAsignar" layoutX="350.0" layoutY="177.0" mnemonicParsing="false" onAction="#asignarEmpleo" text="Asignar" />
                               <TextField fx:id="txtHoraInicio" layoutX="190.0" layoutY="109.0" prefHeight="25.0" prefWidth="372.0" />
                               <TextField fx:id="txtHoraFin" layoutX="190.0" layoutY="134.0" prefHeight="25.0" prefWidth="372.0" />
+                              <Label layoutX="574.0" layoutY="109.0" prefHeight="25.0" prefWidth="127.0" text="ej. 08:00" />
+                              <Label layoutX="574.0" layoutY="134.0" prefHeight="25.0" prefWidth="127.0" text="ej. 15:30" />
+                              <Label layoutX="574.0" layoutY="86.0" prefHeight="25.0" prefWidth="127.0" text="ej. 367.97" />
                            </children>
                         </Pane>
                      </children>
@@ -190,17 +193,17 @@
                         <TextField fx:id="txtModifcarApellido" layoutX="232.0" layoutY="315.0" prefHeight="25.0" prefWidth="372.0" />
                         <DatePicker fx:id="dateModificarEmpleado" layoutX="231.0" layoutY="390.0" prefHeight="25.0" prefWidth="372.0" />
                         <Label layoutX="38.0" layoutY="441.0" prefHeight="26.0" prefWidth="144.0" text="Correo: " />
-                        <Label layoutX="38.0" layoutY="415.0" prefHeight="26.0" prefWidth="144.0" text="Teléfono: " />
+                        <Label layoutX="38.0" layoutY="415.0" prefHeight="26.0" prefWidth="144.0" text="Celular:" />
                         <TextField fx:id="txtModifcarTelefono" layoutX="231.0" layoutY="416.0" prefHeight="25.0" prefWidth="372.0" />
                         <ChoiceBox fx:id="choSexoModificarEmpleado" layoutX="231.0" layoutY="365.0" prefHeight="25.0" prefWidth="372.0" />
-                        <Button fx:id="btnModificarEmpleado" layoutX="384.0" layoutY="484.0" mnemonicParsing="false" text="Modificar" />
+                        <Button fx:id="btnModificarEmpleado" layoutX="384.0" layoutY="484.0" mnemonicParsing="false" onAction="#modificarEmpleado" text="Modificar" />
                         <Button fx:id="btnBuscarModificar" layoutX="382.0" layoutY="50.0" mnemonicParsing="false" onAction="#buscarModificarEmpleado" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
                         <TableView fx:id="tableModificar" layoutY="97.0" prefHeight="175.0" prefWidth="834.0">
                            <columns>
                               <TableColumn prefWidth="121.0" text="CEDULA" />
                               <TableColumn prefWidth="95.0" text="NOMBRE" />
                               <TableColumn prefWidth="112.0" text="APELLIDO" />
-                              <TableColumn prefWidth="129.0" text="TELEFONO" />
+                              <TableColumn prefWidth="129.0" text="CELULAR" />
                               <TableColumn prefWidth="178.0" text="DIRECCION" />
                               <TableColumn prefWidth="198.0" text="CORREO" />
                            </columns>

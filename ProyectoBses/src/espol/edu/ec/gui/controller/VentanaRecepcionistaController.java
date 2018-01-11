@@ -26,6 +26,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -117,7 +118,6 @@ public class VentanaRecepcionistaController implements Initializable {
 
     @FXML
     private Button closeSesion;
-
     
     @FXML
     void buscar(ActionEvent event) {
@@ -146,9 +146,44 @@ public class VentanaRecepcionistaController implements Initializable {
         stage.show();
     }
     
+    public static boolean isNumeric(String cadena){
+	try {
+		Integer.parseInt(cadena);
+		return true;
+	} catch (NumberFormatException nfe){
+		return false;
+	}
+    }
+    
+    public static boolean esDecimal(String cad) {
+        try {
+            Double.parseDouble(cad);
+            return true;
+        } catch (NumberFormatException nfe) {
+            System.out.println(nfe);
+            return false;
+        }
+    }
+    
+    
     @FXML
     public void nuevoCliente(ActionEvent event) {
-        cleanNuevoCliente();
+        if(txtCedula.getText().length()!=10
+                ||!VentanaRecepcionistaController.isNumeric(txtCedula.getText())){
+            JOptionPane.showMessageDialog(null, "Cedula incorrecta");
+        }else if(txtApellidos.getText().isEmpty()||txtNombre.getText().isEmpty()
+                ||txtCedula.getText().isEmpty()||txtCorreo.getText().isEmpty()
+                ||txtDireccion.getText().isEmpty()||txtTelefono.getText().isEmpty()){
+                //&&comboSexo.getValue().isEmpty()&&comboMembresia.getValue().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campos incompletos");
+        }else if(txtTelefono.getText().length()!=10
+                ||!VentanaRecepcionistaController.isNumeric(txtTelefono.getText())){
+            JOptionPane.showMessageDialog(null, "Telefono incorrecto");
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+            cleanNuevoCliente();
+        }
+        
     }
 
     @FXML
