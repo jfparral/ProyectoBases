@@ -60,41 +60,6 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="tabSalario" text="Salario">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="txtSalario" layoutX="186.0" layoutY="58.0" />
-                        <Label alignment="CENTER" layoutX="25.0" layoutY="21.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
-                        <ChoiceBox fx:id="choSalario" layoutX="25.0" layoutY="58.0" prefWidth="150.0" />
-                        <Button fx:id="btnBuscarSalario" layoutX="344.0" layoutY="58.0" mnemonicParsing="false" onAction="#buscarSalario" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
-                        <TableView fx:id="tableBuscarSalario" layoutY="101.0" prefHeight="182.0" prefWidth="834.0">
-                          <columns>
-                            <TableColumn prefWidth="136.0" text="CEDULA" />
-                            <TableColumn prefWidth="124.0" text="NOMBRE" />
-                              <TableColumn prefWidth="225.0" text="APELLIDOS" />
-                              <TableColumn prefWidth="158.0" text="CORREO" />
-                              <TableColumn prefWidth="190.0" text="CELULAR" />
-                          </columns>
-                        </TableView>
-                        <Pane layoutY="283.0" prefHeight="244.0" prefWidth="834.0">
-                           <children>
-                              <Label alignment="CENTER" layoutX="299.0" layoutY="14.0" prefHeight="17.0" prefWidth="238.0" text="DETALLES DE PAGOS DEL EMPLEADO" />
-                              <TableView fx:id="tableDetallesSalario" layoutX="1.0" layoutY="31.0" prefHeight="170.0" prefWidth="834.0">
-                                <columns>
-                                  <TableColumn prefWidth="171.0" text="CARGO" />
-                                    <TableColumn prefWidth="156.0" text="ESTADO" />
-                                    <TableColumn prefWidth="227.0" text="FECHA" />
-                                  <TableColumn prefWidth="278.0" text="SUELDO" />
-                                </columns>
-                              </TableView>
-                              <Button fx:id="btnImprimirSalario" layoutX="369.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Imprimir" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
             <Tab fx:id="tabVenta" text="Venta de insumos">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -280,6 +245,41 @@
                         <Button fx:id="btnEliminarInsumo" layoutX="371.0" layoutY="332.0" mnemonicParsing="false" text="Eliminar" />
                      </children></AnchorPane>
               </content>
+            </Tab>
+            <Tab fx:id="tabSalario" text="Salario">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtSalario" layoutX="186.0" layoutY="58.0" />
+                        <Label alignment="CENTER" layoutX="25.0" layoutY="21.0" prefHeight="26.0" prefWidth="116.0" text="BUSQUEDA" />
+                        <ChoiceBox fx:id="choSalario" layoutX="25.0" layoutY="58.0" prefWidth="150.0" />
+                        <Button fx:id="btnBuscarSalario" layoutX="344.0" layoutY="58.0" mnemonicParsing="false" onAction="#buscarSalario" prefHeight="25.0" prefWidth="98.0" text="Buscar" />
+                        <TableView fx:id="tableBuscarSalario" layoutY="101.0" prefHeight="182.0" prefWidth="834.0">
+                          <columns>
+                            <TableColumn prefWidth="136.0" text="CEDULA" />
+                            <TableColumn prefWidth="124.0" text="NOMBRE" />
+                              <TableColumn prefWidth="225.0" text="APELLIDOS" />
+                              <TableColumn prefWidth="158.0" text="CORREO" />
+                              <TableColumn prefWidth="190.0" text="CELULAR" />
+                          </columns>
+                        </TableView>
+                        <Pane layoutY="283.0" prefHeight="244.0" prefWidth="834.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="299.0" layoutY="14.0" prefHeight="17.0" prefWidth="238.0" text="DETALLES DE PAGOS DEL EMPLEADO" />
+                              <TableView fx:id="tableDetallesSalario" layoutX="1.0" layoutY="31.0" prefHeight="170.0" prefWidth="834.0">
+                                <columns>
+                                  <TableColumn prefWidth="171.0" text="CARGO" />
+                                    <TableColumn prefWidth="156.0" text="ESTADO" />
+                                    <TableColumn prefWidth="227.0" text="FECHA" />
+                                  <TableColumn prefWidth="278.0" text="SUELDO" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="btnImprimirSalario" layoutX="369.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Imprimir" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
             </Tab>
          </tabs>
       </TabPane>

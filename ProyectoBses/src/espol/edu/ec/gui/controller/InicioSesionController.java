@@ -54,7 +54,7 @@ public class InicioSesionController implements Initializable {
             stage.show();
         }else if("Administrador".equals(choEmpl.getValue())){
             ((Node)(event.getSource())).getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/Reportes.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/VentanaAdministrador.fxml"));
             Stage stage=new Stage(); 
             Scene scene = new Scene(root);
             stage.setScene(scene);

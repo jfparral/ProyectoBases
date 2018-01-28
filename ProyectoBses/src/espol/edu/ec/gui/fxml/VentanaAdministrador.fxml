@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="342.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.VentanaAdministradorController">
+   <children>
+      <Button layoutX="282.0" layoutY="111.0" mnemonicParsing="false" onAction="#accionInsumos" prefHeight="25.0" prefWidth="127.0" text="ISUMOS" />
+      <Button fx:id="btnEmpleados" layoutX="282.0" layoutY="147.0" mnemonicParsing="false" onAction="#accionEmpleados" prefHeight="25.0" prefWidth="127.0" text="EMPLEADOS" />
+      <Button fx:id="btnPagoSalarios" layoutX="165.0" layoutY="229.0" mnemonicParsing="false" onAction="#pagoSalarios" prefHeight="25.0" prefWidth="127.0" text="PAGO SALARIOS" />
+      <Button fx:id="btnCerrar" layoutX="314.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="25.0" prefWidth="127.0" text="CERRAR SESIÓN" />
+      <Label alignment="CENTER" layoutX="132.0" layoutY="195.0" prefHeight="25.0" prefWidth="192.0" text="REPORTES" />
+      <Label layoutX="250.0" layoutY="59.0" prefHeight="25.0" prefWidth="192.0" text="AGREGAR MODIFICAR O ELIMINAR" />
+      <Label alignment="CENTER" layoutX="23.0" layoutY="59.0" prefHeight="25.0" prefWidth="192.0" text="VENTA INSUMOS POR" />
+      <Button fx:id="btnFecha" layoutX="69.0" layoutY="111.0" mnemonicParsing="false" onAction="#ventaFecha" prefHeight="25.0" prefWidth="127.0" text="FECHA" />
+      <Button fx:id="btnVentaCliente" layoutX="69.0" layoutY="147.0" mnemonicParsing="false" onAction="#ventaCliente" prefHeight="25.0" prefWidth="127.0" text="CLIENTE" />
+   </children>
+</AnchorPane>
