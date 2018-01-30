@@ -6,10 +6,16 @@ package espol.edu.ec.gui.controller;
  * and open the template in the editor.
  */
 
+import espol.edu.ec.conexion.Conectar;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,9 +127,9 @@ public class VentanaRecepcionistaController implements Initializable {
     @FXML
     private Button closeSesion;
     
-    ObservableList<String> listasexo=FXCollections.observableArrayList("Masculino", "Femenino");
-    ObservableList<String> listatipomembresia=FXCollections.observableArrayList("Mensual", "Trimestral", "Anual");
-    ObservableList<String> listaformadepago=FXCollections.observableArrayList("Efectivo", "Tarjeta de crédito");
+    ObservableList<String> listasexo=FXCollections.observableArrayList("M", "F");
+    ObservableList<String> listatipomembresia=FXCollections.observableArrayList("Normal","Premium");
+    ObservableList<String> listaformadepago=FXCollections.observableArrayList("Efectivo", "Tarjeta de Crédito","Cheque");
     ObservableList<String> listapago=FXCollections.observableArrayList("Pagos Pendientes", "Pagos Cancelados", "Total Pagos");
     ObservableList<String> listanuevamembresia=FXCollections.observableArrayList("Membresía Activa", "Membresía Caducada");
     
@@ -181,14 +187,39 @@ public class VentanaRecepcionistaController implements Initializable {
             JOptionPane.showMessageDialog(null, "Cedula incorrecta");
         }else if(txtApellidos.getText().isEmpty()||txtNombre.getText().isEmpty()
                 ||txtCedula.getText().isEmpty()||txtCorreo.getText().isEmpty()
-                ||txtDireccion.getText().isEmpty()||txtTelefono.getText().isEmpty()){
-                //&&comboSexo.getValue().isEmpty()&&comboMembresia.getValue().isEmpty()){
+                ||txtDireccion.getText().isEmpty()||txtTelefono.getText().isEmpty()
+                &&comboSexo.getValue().isEmpty()&&comboMembresia.getValue().isEmpty()){
             JOptionPane.showMessageDialog(null, "Campos incompletos");
         }else if(txtTelefono.getText().length()!=10
                 ||!VentanaRecepcionistaController.isNumeric(txtTelefono.getText())){
             JOptionPane.showMessageDialog(null, "Telefono incorrecto");
         }else{
-            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+           
+            try{
+            System.out.println("Entro al try");
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            PreparedStatement ps2;
+            ResultSet res;
+            ResultSet res2;
+            Calendar c=Calendar.getInstance();
+            int numero =(int) (Math.random()*999999999)+1;
+            ps=con.prepareStatement("Insert into Cliente values("+txtCedula.getText()+", "+txtNombre.getText()+", "+txtApellidos.getText()+", "+date.getTypeSelector()+", "+comboSexo.getValue()+txtTelefono.getText()+", "+txtDireccion.getText()+", "+txtCorreo.getText()+");");
+            res=ps.executeQuery();
+            ps2=con.prepareStatement("Insert into Membresia values("+numero+", "+", "+txtApellidos.getText()+", "+date.getValue().toString()+", "+comboSexo.getValue()+txtTelefono.getText()+", "+txtDireccion.getText()+", "+txtCorreo.getText()+");");
+            res2=ps2.executeQuery();
+            if(res.next())
+            {
+                
+                JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+                com.Desconectar();
+            }
+            com.Desconectar();
+         }catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
             cleanNuevoCliente();
         }
         
