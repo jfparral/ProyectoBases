@@ -45,7 +45,19 @@ public class VentasPorClienteController {
 
     @FXML
     void buscarInsumoCliente(ActionEvent event) {
-
+        try{
+            System.out.println("Entro al try");
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("Select c.cedula, c.nombre, c.apellido, c.telefono, c.direccion, c.correo from clientes c, membresia m"
+                    + "where c.cedula='"+txtInsumoCliente+"' and m.tipo='"+choBusuedaInsumoCliente.getValue()+             "';");
+            res=ps.executeQuery();
+    }   catch (SQLException ex) {
+            System.out.println("Error al conectar: "+ex);
+        }
     }
 
     @FXML
