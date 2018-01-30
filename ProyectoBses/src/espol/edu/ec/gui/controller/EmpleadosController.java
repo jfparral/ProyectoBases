@@ -125,7 +125,7 @@ public class EmpleadosController implements Initializable {
             con=com.getConnection();
             PreparedStatement ps;
             ResultSet res;
-            ps=con.prepareStatement("create view consultar_trabajador as select * from trabajador where cedula="+txtModificarBuscar.getText()+";");
+            ps=con.prepareStatement("create view consultar_trabajador as select * from trabajador where cedula='"+txtModificarBuscar.getText()+"';");
             res=ps.executeQuery();
            }
            catch(Exception e){
@@ -154,7 +154,7 @@ public class EmpleadosController implements Initializable {
             con=com.getConnection();
             PreparedStatement ps;
             ResultSet res;
-            ps=con.prepareStatement("DELETE FROM trabajador WHERE cedula="+txtModificarBuscar.getText()+";");
+            ps=con.prepareStatement("DELETE FROM trabajador WHERE cedula='"+txtModificarBuscar.getText()+"';");
             res=ps.executeQuery();
            }
            catch(Exception e){
@@ -172,7 +172,7 @@ public class EmpleadosController implements Initializable {
             con=com.getConnection();
             PreparedStatement ps;
             ResultSet res;
-            ps=con.prepareStatement(" UPDATE trabajador SET cedula="+txtModifcarCedula.getText()+", nombre="+txtModifcarNombre.getText()+", apellido="+txtModifcarApellido.getText()+", fecha_nac=pendiente fecha_nac, sexo="+choSexoModificarEmpleado.getValue()+", telefono="+txtModifcarTelefono.getText()+", direccion="+txtModificarDireccion.getText()+", correo="+txtModifcarCorreo.getText()+" WHERE cedula="+txtModificarBuscar.getText()+";");
+            ps=con.prepareStatement(" UPDATE trabajador SET cedula='"+txtModifcarCedula.getText()+"', nombre='"+txtModifcarNombre.getText()+"', apellido='"+txtModifcarApellido.getText()+"', fecha_nac=null, sexo='"+choSexoModificarEmpleado.getValue()+"', telefono='"+txtModifcarTelefono.getText()+"', correo='"+txtModifcarCorreo.getText()+"' WHERE cedula='"+txtModificarBuscar.getText()+"';");
             res=ps.executeQuery();
            }
            catch(Exception e){
