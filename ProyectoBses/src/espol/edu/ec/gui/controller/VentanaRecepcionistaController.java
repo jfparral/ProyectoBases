@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,13 +62,13 @@ public class VentanaRecepcionistaController implements Initializable {
     private TextField txtDireccion;
 
     @FXML
-    private ComboBox<?> comboSexo;
+    private ComboBox<String> comboSexo;
 
     @FXML
     private Button btnIngreso;
 
     @FXML
-    private ComboBox<?> comboMembresia;
+    private ComboBox<String> comboMembresia;
 
     @FXML
     private Tab ventPagos;
@@ -78,7 +80,7 @@ public class VentanaRecepcionistaController implements Initializable {
     private TableView<?> tablePagos;
 
     @FXML
-    private ChoiceBox<?> comboBusqueda;
+    private ChoiceBox<String> comboBusqueda;
 
     @FXML
     private Button btnBuscar;
@@ -96,28 +98,34 @@ public class VentanaRecepcionistaController implements Initializable {
     private TextField txtBusquedaMembresia;
 
     @FXML
-    private ChoiceBox<?> comboBusquedaMembresia;
+    private ChoiceBox<String> comboBusquedaMembresia;
 
     @FXML
     private Button btnBuscar1;
 
     @FXML
-    private TableView<?> tableNuevaMembresia;
+    private TableView<String> tableNuevaMembresia;
 
     @FXML
     private Label lblTipo;
 
     @FXML
-    private ChoiceBox<?> choTipo;
+    private ChoiceBox<String> choTipo;
 
     @FXML
-    private ChoiceBox<?> choFormaPago;
+    private ChoiceBox<String> choFormaPago;
 
     @FXML
     private Label lblPago;
 
     @FXML
     private Button closeSesion;
+    
+    ObservableList<String> listasexo=FXCollections.observableArrayList("Masculino", "Femenino");
+    ObservableList<String> listatipomembresia=FXCollections.observableArrayList("Mensual", "Trimestral", "Anual");
+    ObservableList<String> listaformadepago=FXCollections.observableArrayList("Efectivo", "Tarjeta de crédito");
+    ObservableList<String> listapago=FXCollections.observableArrayList("Pagos Pendientes", "Pagos Cancelados", "Total Pagos");
+    ObservableList<String> listanuevamembresia=FXCollections.observableArrayList("Membresía Activa", "Membresía Caducada");
     
     @FXML
     void buscar(ActionEvent event) {
@@ -213,10 +221,12 @@ public class VentanaRecepcionistaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        choTipo.setDisable(true);
-        choFormaPago.setDisable(true);
-        nuevaMembresia.setDisable(true);
-        
+        choTipo.setItems(listatipomembresia);
+        comboSexo.setItems(listasexo);
+        comboMembresia.setItems(listatipomembresia);
+        comboBusquedaMembresia.setItems(listanuevamembresia);
+        comboBusqueda.setItems(listapago);
+        choFormaPago.setItems(listaformadepago);
     }    
 
 }
