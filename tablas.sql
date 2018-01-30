@@ -35,4 +35,6 @@ Insert into progreso values
 ('0846416161','0984565619',''),
 ('0956321542','0948465656','');
 Insert into registro_admin values
-('1','0974516166',970,'Gerente','9:00 a 16:00');
+('1','0974516166',970,'Administrador','9:00 a 16:00');
+Insert into registro_admin values
+('2','0948465656',970,'Recepcionista','9:00 a 16:00');
