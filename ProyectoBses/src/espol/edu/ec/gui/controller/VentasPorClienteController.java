@@ -1,5 +1,10 @@
 package espol.edu.ec.gui.controller;
 
+import espol.edu.ec.conexion.Conectar;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
