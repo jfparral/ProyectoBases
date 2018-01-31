@@ -13,9 +13,9 @@ import java.sql.Statement;
 public class Conectar {
     private static Connection com;
     public static final String driver= "com.mysql.jdbc.Driver";
-    public static final String user="cliente";
-    public static final String password="cliente";
-    public static final String url="jdbc:mysql://192.168.1.2:3306/gimnasio";
+    public static final String user="root";
+    public static final String password="dfghj";
+    public static final String url="jdbc:mysql://localhost:3306/gimnasio";
     
     public Conectar() {
         com=null;

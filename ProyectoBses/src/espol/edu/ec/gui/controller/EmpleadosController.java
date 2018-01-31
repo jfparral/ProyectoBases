@@ -1,7 +1,11 @@
 package espol.edu.ec.gui.controller;
 
+import espol.edu.ec.conexion.Conectar;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
@@ -118,7 +122,6 @@ public class EmpleadosController implements Initializable {
 
     @FXML
     public void buscarModificarEmpleado(ActionEvent event) {
-<<<<<<< Updated upstream
           try{
             System.out.println("Entro al try");
             Conectar com=new Conectar();
@@ -132,21 +135,6 @@ public class EmpleadosController implements Initializable {
            catch(Exception e){
             System.out.println("Error al conectar: "+e);
             }
-=======
-//          try{
-//            System.out.println("Entro al try");
-//            Conectar com=new Conectar();
-//            Connection con = null;
-//            con=com.getConnection();
-//            PreparedStatement ps;
-//            ResultSet res;
-//            ps=con.prepareStatement("create view consultar_trabajador as select * from trabajador where cedula="+txtModificarBuscar.getText()+";");
-//            res=ps.executeQuery();
-//           }
-//           catch(Exception e){
-//            System.out.println("Error al conectar: "+e);
-//            }
->>>>>>> Stashed changes
     }
 
     @FXML
@@ -163,7 +151,6 @@ public class EmpleadosController implements Initializable {
 
     @FXML
     public void eliminarEmpleado(ActionEvent event) {
-<<<<<<< Updated upstream
         try{
             System.out.println("Entro al try");
             Conectar com=new Conectar();
@@ -177,7 +164,6 @@ public class EmpleadosController implements Initializable {
            catch(Exception e){
             System.out.println("Error al conectar: "+e);
             }
-=======
 //        try{
 //            System.out.println("Entro al try");
 //            Conectar com=new Conectar();
@@ -191,13 +177,11 @@ public class EmpleadosController implements Initializable {
 //           catch(Exception e){
 //            System.out.println("Error al conectar: "+e);
 //            }
->>>>>>> Stashed changes
     }
 
     @FXML
     public void modificarEmpleado(ActionEvent event) {
         validarCampos();
-<<<<<<< Updated upstream
          try{
             System.out.println("Entro al try");
             Conectar com=new Conectar();
@@ -211,7 +195,6 @@ public class EmpleadosController implements Initializable {
            catch(Exception e){
             System.out.println("Error al conectar: "+e);
             }
-=======
 //         try{
 //            System.out.println("Entro al try");
 //            Conectar com=new Conectar();
@@ -225,7 +208,6 @@ public class EmpleadosController implements Initializable {
 //           catch(Exception e){
 //            System.out.println("Error al conectar: "+e);
 //            }
->>>>>>> Stashed changes
     }
 
     @FXML
