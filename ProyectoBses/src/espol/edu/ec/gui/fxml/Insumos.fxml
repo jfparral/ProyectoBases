@@ -10,15 +10,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.InsumosController">
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.gui.controller.InsumosController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="3.0" layoutY="43.0" prefHeight="522.0" prefWidth="844.0">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="lblNuevoInsumo" layoutX="7.0" layoutY="14.0" onMouseClicked="#ventanaNuevoInsumo" prefHeight="44.0" prefWidth="222.0" text="NUEVO INSUMO" />
-                  <Label fx:id="lblModificarInsumo" layoutX="6.0" layoutY="58.0" onMouseClicked="#ventanaModificarInsumo" prefHeight="44.0" prefWidth="215.0" text="MODIFICAR INSUMO" />
-                  <Label fx:id="lblModificarInsumo1" layoutX="6.0" layoutY="102.0" onMouseClicked="#ventanaEliminarInsumo" prefHeight="44.0" prefWidth="215.0" text="ELIMINAR INSUMO" />
+                  <Label fx:id="lblNuevoInsumo" layoutX="7.0" layoutY="14.0" onMouseClicked="#ventanaNuevoInsumo" prefHeight="44.0" prefWidth="222.0" text="NUEVO IMPLEMENTO" />
+                  <Label fx:id="lblModificarInsumo" layoutX="6.0" layoutY="58.0" onMouseClicked="#ventanaModificarInsumo" prefHeight="44.0" prefWidth="215.0" text="MODIFICAR IMPLEMENTO" />
+                  <Label fx:id="lblModificarInsumo1" layoutX="6.0" layoutY="102.0" onMouseClicked="#ventanaEliminarInsumo" prefHeight="44.0" prefWidth="215.0" text="ELIMINAR IMPLEMENTO" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="437.0" prefWidth="572.0">
@@ -53,7 +53,7 @@
             </AnchorPane>
          </items>
       </SplitPane>
-      <Label alignment="CENTER" layoutX="346.0" prefHeight="36.0" prefWidth="157.0" text="INSUMOS" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="346.0" prefHeight="36.0" prefWidth="157.0" text="IMPLEMENTOS" textAlignment="CENTER" />
       <Button fx:id="btnCerrar" layoutX="772.0" layoutY="14.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>

@@ -112,7 +112,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="tabNuebaMembresia" text="Nueva membresía">
+            <Tab fx:id="tabNuebaMembresia" text="Modificar membresía">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -128,10 +128,10 @@
                         </Button>
                         <TableView fx:id="tableNuevaMembresia" layoutX="-1.0" layoutY="92.0" onKeyPressed="#seleccionObjeto" prefHeight="200.0" prefWidth="787.0">
                           <columns>
-                            <TableColumn prefWidth="178.0" text="Cedula" />
-                            <TableColumn prefWidth="170.0" text="Nombre" />
-                              <TableColumn prefWidth="225.0" text="Apellidos" />
-                              <TableColumn prefWidth="212.0" text="Telefono" />
+                            <TableColumn fx:id="ClCedula" prefWidth="178.0" text="Cedula" />
+                            <TableColumn fx:id="ClNombre" prefWidth="170.0" text="Nombre" />
+                              <TableColumn fx:id="ClApelllidos" prefWidth="225.0" text="Apellidos" />
+                              <TableColumn fx:id="ClTelefono" prefWidth="212.0" text="Telefono" />
                           </columns>
                         </TableView>
                         <Label fx:id="lblTipo" layoutX="23.0" layoutY="312.0" prefHeight="25.0" prefWidth="79.0" text="TIPO" />
