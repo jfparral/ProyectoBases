@@ -14,6 +14,7 @@ package espol.edu.ec.clases;
 public class Implemento {
     private String id_implemento;
     private String iva;
+    private String descripcion;
     private String fecha_caducidad;
     private String cant_inventario;
     
