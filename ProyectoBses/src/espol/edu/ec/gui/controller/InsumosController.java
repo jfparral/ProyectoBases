@@ -95,17 +95,54 @@ public class InsumosController implements Initializable{
 
     @FXML
     public void buscarModifiarInsumo(ActionEvent event) {
-        
+         try{
+            System.out.println("Entro al try");
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("create view consultar_implemento as select * from implemento where id_implemento='"+txtBuscarInsumo.getText()+"';");
+            res=ps.executeQuery();
+           }
+           catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
     }
 
     @FXML
     public void eliminarInsumo(ActionEvent event) {
-
+        try{
+            System.out.println("Entro al try");
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("DELETE FROM implemento WHERE id_implemento='"+txtBuscarInsumo.getText()+"';");
+            res=ps.executeQuery();
+           }
+           catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
     }
 
     @FXML
     public void modificarInsumo(ActionEvent event) {
         validar();
+        try{
+            System.out.println("Entro al try");
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement(" UPDATE implemento SET id_implemento='"+txtID.getText()+"', iva='"+txtInsumoIVA.getText()+"', fecha_caducidad='"+txtFechaCaducidad.getText()+"', cant_inventario='"+txtCantidadInventario.getText()+"' WHERE id_implemento='"+txtBuscarInsumo.getText()+"';");
+            res=ps.executeQuery();
+           }
+           catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
     }
 
     @FXML
@@ -150,9 +187,9 @@ public class InsumosController implements Initializable{
     public void cleanInsumos(){
         txtBuscarInsumo.setText("");
         txtID.setText("");
-        txtInsumosName.setText("");
-        txtDescripcionInsumos.setText("");
-        txtPrecioInsumos.setText("");
+        txtInsumoIVA.setText("");
+        txtFechaCaducidad.setText("");
+        txtCantidadInventario.setText("");
     }
     
     @Override
@@ -166,8 +203,8 @@ public class InsumosController implements Initializable{
         if(txtID.getText().isEmpty()||txtInsumoIVA.getText().isEmpty()
                 ||txtFechaCaducidad.getText().isEmpty()||txtCantidadInventario.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Campos incompletos");
-        }else if(!VentanaRecepcionistaController.esDecimal(txtPrecioInsumos.getText())){
-            JOptionPane.showMessageDialog(null, "Precio incorrecto\nEjemplo: 14.59");
+        }else if(!VentanaRecepcionistaController.esDecimal(txtInsumoIVA.getText())){
+            JOptionPane.showMessageDialog(null, "IVA incorrecto\nEjemplo: 0.14");
             
         }else{
             JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
