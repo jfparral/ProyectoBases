@@ -284,7 +284,7 @@ public class ReportesController implements Initializable {
     }
 
     @FXML
-    void buscarModifiarInsumo(ActionEvent event) {
+    void buscarModificarInsumo(ActionEvent event) {
 
     }
 
