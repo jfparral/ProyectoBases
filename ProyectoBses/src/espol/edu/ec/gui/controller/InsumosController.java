@@ -61,13 +61,13 @@ public class InsumosController implements Initializable{
     private TextField txtID;
 
     @FXML
-    private TextField txtInsumosName;
+    private TextField txtInsumoIVA;
 
     @FXML
-    private TextField txtPrecioInsumos;
+    private TextField txtFechaCaducidad;
 
     @FXML
-    private TextArea txtDescripcionInsumos;
+    private TextField txtCantidadInventario;
 
     @FXML
     private Button btnEliminarInsumo;
@@ -78,7 +78,19 @@ public class InsumosController implements Initializable{
     @FXML
     public void agregarNuevoInsumo(ActionEvent event) {
         validar();
-        
+        try{
+            System.out.println("Entro al try");
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("INSERT INTO implemento VALUES("+txtID.getText()+","+txtInsumoIVA.getText()+","+txtFechaCaducidad.getText()+","+txtCantidadInventario.getText()+")");
+            res=ps.executeQuery();
+           }
+           catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
     }
 
     @FXML
@@ -151,8 +163,8 @@ public class InsumosController implements Initializable{
     }
     
     public void validar(){
-        if(txtID.getText().isEmpty()||txtInsumosName.getText().isEmpty()
-                ||txtPrecioInsumos.getText().isEmpty()||txtDescripcionInsumos.getText().isEmpty()){
+        if(txtID.getText().isEmpty()||txtInsumoIVA.getText().isEmpty()
+                ||txtFechaCaducidad.getText().isEmpty()||txtCantidadInventario.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Campos incompletos");
         }else if(!VentanaRecepcionistaController.esDecimal(txtPrecioInsumos.getText())){
             JOptionPane.showMessageDialog(null, "Precio incorrecto\nEjemplo: 14.59");
