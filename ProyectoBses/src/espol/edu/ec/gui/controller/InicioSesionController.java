@@ -91,7 +91,7 @@ public class InicioSesionController implements Initializable {
                 con=com.getConnection();
                 PreparedStatement ps;
                 ResultSet res;
-                ps=con.prepareStatement("select t.cedula from trabajador t, registro_admin reg where reg.id_trabajador=t.cedula and reg.cargo='Administrador';");
+                ps=con.prepareStatement("select t.cedula from trabajador t, registro_tra reg where reg.id_trabajador=t.cedula and reg.cargo='Administrador';");
                 res=ps.executeQuery();
                 if(res.next())
                 {

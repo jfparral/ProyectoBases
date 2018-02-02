@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file://VBOXSVR/CarpetaVirtualBox/ProyectoBases/ProyectoBses/src/espo/edu/ec/Main/Main.java</file>
             <file>file://VBOXSVR/CarpetaVirtualBox/ProyectoBases/ProyectoBses/src/espol/edu/ec/gui/controller/VentanaRecepcionistaController.java</file>
+            <file>file://VBOXSVR/CarpetaVirtualBox/ProyectoBases/ProyectoBses/src/espol/edu/ec/conexion/Conectar.java</file>
+            <file>file://VBOXSVR/CarpetaVirtualBox/ProyectoBases/ProyectoBses/src/espo/edu/ec/Main/Main.java</file>
+            <file>file://VBOXSVR/CarpetaVirtualBox/ProyectoBases/ProyectoBses/src/espol/edu/ec/clases/Compra.java</file>
             <file>file://VBOXSVR/CarpetaVirtualBox/ProyectoBases/ProyectoBses/src/espol/edu/ec/gui/controller/InicioSesionController.java</file>
+            <file>file://VBOXSVR/CarpetaVirtualBox/ProyectoBases/ProyectoBses/src/espol/edu/ec/gui/controller/SalarioController.java</file>
         </group>
     </open-files>
 </project-private>

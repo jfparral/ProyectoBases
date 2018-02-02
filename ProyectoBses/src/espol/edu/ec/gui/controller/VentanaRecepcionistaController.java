@@ -6,6 +6,9 @@ package espol.edu.ec.gui.controller;
  * and open the template in the editor.
  */
 
+import espol.edu.ec.clases.Cliente;
+import espol.edu.ec.clases.Compra;
+import espol.edu.ec.clases.Membresia;
 import espol.edu.ec.conexion.Conectar;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -33,8 +37,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -45,7 +53,7 @@ import javax.swing.JOptionPane;
  */
 public class VentanaRecepcionistaController implements Initializable {
 
-    @FXML
+  @FXML
     private Tab ventNuevoCliente;
 
     @FXML
@@ -70,13 +78,16 @@ public class VentanaRecepcionistaController implements Initializable {
     private TextField txtDireccion;
 
     @FXML
-    private ComboBox<?> comboSexo;
+    private ComboBox<String> comboSexo;
 
     @FXML
     private Button btnIngreso;
 
     @FXML
-    private ComboBox<?> comboMembresia;
+    private ComboBox<String> comboMembresia;
+
+    @FXML
+    private ChoiceBox<String> choTipoMembresia;
 
     @FXML
     private Tab ventPagos;
@@ -85,10 +96,7 @@ public class VentanaRecepcionistaController implements Initializable {
     private TextField txtBusqueda;
 
     @FXML
-    private TableView<?> tablePagos;
-
-    @FXML
-    private ChoiceBox<?> comboBusqueda;
+    private TableView<Compra> tablePagos;
 
     @FXML
     private Button btnBuscar;
@@ -106,91 +114,223 @@ public class VentanaRecepcionistaController implements Initializable {
     private TextField txtBusquedaMembresia;
 
     @FXML
-    private ChoiceBox<?> comboBusquedaMembresia;
+    private ChoiceBox<String> comboBusquedaMembresia;
 
     @FXML
     private Button btnBuscar1;
+    
+    @FXML
+    private TableColumn<Compra,String> Colcedula;
 
     @FXML
-    private TableView<?> tableNuevaMembresia;
+    private TableColumn<Compra,String> Colnombre;
 
     @FXML
-    private TableColumn<?, ?> ClCedula;
+    private TableColumn<Compra, String> Colapellido;
 
     @FXML
-    private TableColumn<?, ?> ClNombre;
+    private TableColumn<Compra, String> Coltelefono;
 
     @FXML
-    private TableColumn<?, ?> ClApelllidos;
+    private TableColumn<Compra, String> Colgasto;
 
     @FXML
-    private TableColumn<?, ?> ClTelefono;
+    private TableView<Cliente> tableNuevaMembresia;
 
     @FXML
-    private Label lblTipo;
+    private TableColumn<Cliente, String> ClCedula;
 
     @FXML
-    private ChoiceBox<?> choTipo;
+    private TableColumn<Cliente, String> ClNombre;
 
     @FXML
-    private ChoiceBox<?> choFormaPago;
+    private TableColumn<Cliente, String> ClApelllidos;
+
+    @FXML
+    private TableColumn<Cliente, String> ClTelefono;
+
+    @FXML
+    private Button mostrarcompras;
+
+    @FXML
+    private ChoiceBox<String> choTipo;
+
+    @FXML
+    private ChoiceBox<String> choFormaPago;
 
     @FXML
     private Label lblPago;
 
     @FXML
     private Button closeSesion;
-    
+    private ObservableList<Cliente> lista = FXCollections.observableArrayList();
+    private ObservableList<Cliente> listavacia = FXCollections.observableArrayList();
+    private ObservableList<Compra> fila = FXCollections.observableArrayList();
+    private ObservableList<Compra> filavacia = FXCollections.observableArrayList();
     ObservableList<String> listasexo=FXCollections.observableArrayList("M", "F");
+    ObservableList<String> listapagomembresia=FXCollections.observableArrayList("Efectivo", "Tarjeta de Crédito","Cheque");
     ObservableList<String> listatipomembresia=FXCollections.observableArrayList("Mensual","Trimestral","Anual");
     ObservableList<String> listaformadepago=FXCollections.observableArrayList("Efectivo", "Tarjeta de Crédito","Cheque");
-    ObservableList<String> listapago=FXCollections.observableArrayList("Pagos Pendientes", "Pagos Cancelados", "Total Pagos");
     ObservableList<String> listanuevamembresia=FXCollections.observableArrayList("Activa", "Caducada");
     
     @FXML
     void buscar(ActionEvent event) {
-
-    }
-
-    @FXML
-    void buscarMembresia(ActionEvent event) {
+        tablePagos.setItems(filavacia);
         try{
             Conectar com=new Conectar();
             Connection con = null;
             con=com.getConnection();
             PreparedStatement ps;
-            PreparedStatement ps2;
             ResultSet res;
-            ResultSet res2;
-            Calendar c=Calendar.getInstance();
-            int numero =(int) (Math.random()*999999999)+1;
-            System.out.println(comboBusquedaMembresia.getValue());
-            ps=con.prepareStatement("Select c.cedula, c.nombre, c.apellido, c.telefono from cliente c, membresia m , registro_membresia rm where c.cedula=m.id_cliente and m.id_membresia=rm.membresia and rm.estado='"+comboBusquedaMembresia.getValue().trim()+"';");
+            ps=con.prepareStatement("Select c.cedula, c.nombre, c.apellido, c.telefono, dc.precio from cliente c, compra co, detalle_compra dc where c.cedula=co.id_cliente and dc.factura=co.id_compra and co.id_cliente='"+txtBusqueda.getText()+"';");
             res=ps.executeQuery();
-            
-            //ps2=con.prepareStatement("Insert into Membresia values("+numero+", "+", "+txtApellidos.getText()+", "+date.getValue().toString()+", "+comboSexo.getValue()+txtTelefono.getText()+", "+txtDireccion.getText()+", "+txtCorreo.getText()+");");
-            //res2=ps2.executeQuery();
-            if(res.next())
-            {
-                String cedula=res.getString("cedula");
-                String nombre=res.getString("nombre");
-                String apellido=res.getString("apellido");
-                String telefono=res.getString("telefono");
-                ObservableList<String> fila=FXCollections.observableArrayList(cedula,nombre,apellido,telefono);
-                tableNuevaMembresia.setItems(fila);
-                tableNuevaMembresia.
+            while (res.next()) {
+                String cedula = res.getString("cedula");
+                String nombre = res.getString("nombre");
+                String apellido = res.getString("apellido");
+                String telefono = res.getString("telefono");
+                String gasto = res.getString("precio");
+                fila.add(new Compra(nombre, apellido, cedula, telefono, gasto));
+                tablePagos.setItems(fila);
             }
-            
-            
+            Colcedula.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+            Colnombre.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+            Colapellido.setCellValueFactory(new PropertyValueFactory<>("Cedula"));
+            Coltelefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
+            Colgasto.setCellValueFactory(new PropertyValueFactory<>("Gasto"));
             
          }catch(Exception e){
             System.out.println("Error al conectar: "+e);
             }
     }
+
+    @FXML
+    void buscarMembresia(ActionEvent event) {
+        if(txtBusquedaMembresia.getText().equals(""))
+        {
+            try{
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("Select c.cedula, c.nombre, c.apellido, c.telefono from cliente c, membresia m , registro_membresia rm where c.cedula=m.id_cliente and m.id_membresia=rm.membresia and rm.estado='"+comboBusquedaMembresia.getValue()+"';");
+            res=ps.executeQuery();
+            while (res.next()) {
+                String cedula = res.getString("cedula");
+                String nombre = res.getString("nombre");
+                String apellido = res.getString("apellido");
+                String telefono = res.getString("telefono");
+                lista.add(new Cliente(nombre, apellido, cedula, telefono));
+                //Y la agregan a la tabla que desean
+                tableNuevaMembresia.setItems(lista);
+
+            }
+            //Luego las columnas deben e
+            //tableNuevaMembresia.setItems(lista);
+            //ClNombre.setCellValueFactory(new PropertyValueFactory<String,String>("Nombre"));
+            ClNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+            ClApelllidos.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+            ClCedula.setCellValueFactory(new PropertyValueFactory<>("Cedula"));
+            ClTelefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
+            
+         }catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+          }
+        }else
+        {
+            try{
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("Select c.cedula, c.nombre, c.apellido, c.telefono from cliente c, membresia m , registro_membresia rm where c.cedula=m.id_cliente and m.id_membresia=rm.membresia and m.id_cliente='"+txtBusquedaMembresia.getText()+"';");
+            res=ps.executeQuery();
+            while (res.next()) {
+                String cedula = res.getString("cedula");
+                String nombre = res.getString("nombre");
+                String apellido = res.getString("apellido");
+                String telefono = res.getString("telefono");
+                lista.add(new Cliente(nombre, apellido, cedula, telefono));
+                //Y la agregan a la tabla que desean
+                tableNuevaMembresia.setItems(lista);
+
+            }
+            //Luego las columnas deben e
+            //tableNuevaMembresia.setItems(lista);
+            //ClNombre.setCellValueFactory(new PropertyValueFactory<String,String>("Nombre"));
+            ClNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+            ClApelllidos.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+            ClCedula.setCellValueFactory(new PropertyValueFactory<>("Cedula"));
+            ClTelefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
+            
+         }catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
+        }
+    }
+    private String cedula;
+    @FXML
+    void seleccion(MouseEvent event) {
+        
+        System.out.println(this.cedula);
+    }
     
     @FXML
     void ingresoMembresia(ActionEvent event) {
-        
+        try{
+            Cliente m=tableNuevaMembresia.getSelectionModel().getSelectedItem();
+        this.cedula=m.getCedula();
+            System.out.println(this.cedula);
+            System.out.println("Entro al try");
+            Conectar com=new Conectar();
+            Connection con = com.getConnection();
+            PreparedStatement ps;
+            Calendar c = new GregorianCalendar();
+            int day=c.get(Calendar.DATE);
+            int month=c.get(Calendar.MONTH)+1;
+            int year=c.get(Calendar.YEAR);
+            String fechainicio="";
+            if(month<10)
+                fechainicio=""+year+"-0"+month+"-"+day;
+            else
+                fechainicio=""+year+"-"+month+"-"+day;
+            if(choTipo.getValue().equals("Mensual"))
+            {
+                month=month+1;
+            }else if(choTipo.getValue().equals("Trimestral"))
+            {
+                month=month+3;
+            }else{
+                year=year+1;
+            }
+            int value;
+            if(choFormaPago.getValue().equals("Tarjeta de Crédito"))
+            {
+                value=1;
+            }else if(choFormaPago.getValue().equals("Efectivo"))
+            {
+                value=2;
+            }else{
+                value=3;
+            }
+            String fechafinal="";
+            if(month<10)
+                fechafinal=""+year+"-0"+month+"-"+day;
+            else
+                fechafinal=""+year+"-"+month+"-"+day;
+            ps=con.prepareStatement("Update membresia set fecha_inicio='"+fechainicio+"', fecha_fin='"+fechafinal+"', tipo='"+choTipo.getValue()+"', forma_pago='"+value+"' where id_cliente='"+this.cedula+"';");
+            System.out.println(fechainicio);
+            System.out.println(fechafinal);
+            int j=ps.executeUpdate();
+            if(j==1){
+                JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+            }
+         }catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
+            cleanNuevoCliente();
     }
 
     @FXML
@@ -259,28 +399,85 @@ public class VentanaRecepcionistaController implements Initializable {
             try{
             System.out.println("Entro al try");
             Conectar com=new Conectar();
-            Connection con = null;
-            con=com.getConnection();
-            PreparedStatement ps;
-            PreparedStatement ps2;
-            ResultSet res;
-            ResultSet res2;
-            Calendar c=Calendar.getInstance();
-            int numero =(int) (Math.random()*999999999)+1;
+            Connection con =com.getConnection();
+            PreparedStatement ps,ps2;
+            int numero =(int) (Math.random()*999999999)+999999999;
             ps=con.prepareStatement("Insert into Cliente values('"+txtCedula.getText()+"', '"+txtNombre.getText()+"', '"+txtApellidos.getText()+"', '"+date.getValue().toString()+"', '"+comboSexo.getValue()+"', '"+txtTelefono.getText()+"', '"+txtDireccion.getText()+"', '"+txtCorreo.getText()+"');");
             int i=ps.executeUpdate();
-            //ps2=con.prepareStatement("Insert into Membresia values("+numero+", "+", "+txtApellidos.getText()+", "+date.getValue().toString()+", "+comboSexo.getValue()+txtTelefono.getText()+", "+txtDireccion.getText()+", "+txtCorreo.getText()+");");
-            //res2=ps2.executeQuery();
-                System.out.println("i: "+i);
-            if(i==1){
+            con=com.getConnection();
+            Calendar c = new GregorianCalendar();
+            int day=c.get(Calendar.DATE);
+            int month=c.get(Calendar.MONTH)+1;
+            int year=c.get(Calendar.YEAR);
+            String fechainicio="";
+            if(month<10)
+                fechainicio=""+year+"-0"+month+"-"+day;
+            else
+                fechainicio=""+year+"-"+month+"-"+day;
+            if(choTipo.getValue().equals("Mensual"))
+            {
+                month=month+1;
+            }else if(choTipo.getValue().equals("Trimestral"))
+            {
+                month=month+3;
+            }else{
+                year=year+1;
+            }
+            int value;
+            if(choTipoMembresia.getValue().equals("Tarjeta de Crédito"))
+            {
+                value=1;
+            }else if(choTipoMembresia.getValue().equals("Efectivo"))
+            {
+                value=2;
+            }else{
+                value=3;
+            }
+            String fechafinal="";
+            if(month<10)
+                fechafinal=""+year+"-0"+month+"-"+day;
+            else
+                fechafinal=""+year+"-"+month+"-"+day;
+            ps2=con.prepareStatement("Insert into Membresia values('"+numero+"', '"+txtCedula.getText()+"', '"+fechainicio+"', '"+fechafinal+"', '"+comboMembresia.getValue()+"', '"+value+"');");
+            int j=ps2.executeUpdate();
+            if(i==1 && j==1){
                 JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
-                com.Desconectar();
             }
          }catch(Exception e){
             System.out.println("Error al conectar: "+e);
             }
             cleanNuevoCliente();
         }
+    }
+    
+    @FXML
+    void mostrarCompras(ActionEvent event) {
+           try{
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("Select c.cedula, c.nombre, c.apellido, c.telefono, dc.precio from cliente c, compra co, detalle_compra dc where c.cedula=co.id_cliente and dc.factura=co.id_compra;");
+            res=ps.executeQuery();
+            while (res.next()) {
+                String cedula = res.getString("cedula");
+                String nombre = res.getString("nombre");
+                String apellido = res.getString("apellido");
+                String telefono = res.getString("telefono");
+                String gasto = res.getString("precio");
+                fila.add(new Compra(nombre, apellido, cedula, telefono, gasto));
+                tablePagos.setItems(fila);
+            }
+            Colcedula.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+            Colnombre.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+            Colapellido.setCellValueFactory(new PropertyValueFactory<>("Cedula"));
+            Coltelefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
+            Colgasto.setCellValueFactory(new PropertyValueFactory<>("Gasto"));
+            
+         }catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
     }
 
     @FXML
@@ -293,6 +490,33 @@ public class VentanaRecepcionistaController implements Initializable {
         
     }
     
+    @FXML
+    void cargarModificar(ActionEvent event) {
+        try{
+            Conectar com=new Conectar();
+            Connection con = null;
+            con=com.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps=con.prepareStatement("Select c.cedula, c.nombre, c.apellido, c.telefono from cliente c, membresia m , registro_membresia rm where c.cedula=m.id_cliente and m.id_membresia=rm.membresia;");
+            res=ps.executeQuery();
+            while (res.next()) {
+                String cedula = res.getString("cedula");
+                String nombre = res.getString("nombre");
+                String apellido = res.getString("apellido");
+                String telefono = res.getString("telefono");
+                lista.add(new Cliente(nombre, apellido, cedula, telefono));
+                tableNuevaMembresia.setItems(lista);
+            }
+            ClNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+            ClApelllidos.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+            ClCedula.setCellValueFactory(new PropertyValueFactory<>("Cedula"));
+            ClTelefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
+         }catch(Exception e){
+            System.out.println("Error al conectar: "+e);
+            }
+    }
+    
     public void cleanNuevoCliente(){
         txtCedula.setText("");
         txtNombre.setText("");
@@ -301,6 +525,10 @@ public class VentanaRecepcionistaController implements Initializable {
         txtTelefono.setText("");
         txtDireccion.setText("");
         txtCorreo.setText("");
+        comboSexo.setItems(listasexo);
+        comboMembresia.setItems(listatipomembresia);
+        choTipoMembresia.setItems(listapagomembresia);
+        
     }
     
     public void cleanPagos(){
@@ -314,8 +542,8 @@ public class VentanaRecepcionistaController implements Initializable {
         comboSexo.setItems(listasexo);
         comboMembresia.setItems(listatipomembresia);
         comboBusquedaMembresia.setItems(listanuevamembresia);
-        comboBusqueda.setItems(listapago);
         choFormaPago.setItems(listaformadepago);
+        choTipoMembresia.setItems(listapagomembresia);
     }    
 
 }
