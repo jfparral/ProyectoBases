@@ -98,7 +98,7 @@ public class InsumosController implements Initializable{
     }
 
     @FXML
-    public void buscarModifiarInsumo(ActionEvent event) {
+    public void buscarModificarInsumo(ActionEvent event) {
          try{
             System.out.println("Entro al try");
             Conectar com=new Conectar();
@@ -112,6 +112,18 @@ public class InsumosController implements Initializable{
            catch(Exception e){
             System.out.println("Error al conectar: "+e);
             }
+    }
+    
+     @FXML
+    public void regresar(ActionEvent event) throws IOException {
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/VentanaAdministrador.fxml"));
+        Stage stage=new Stage(); 
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("BIENVENIDO");
+        stage.show();
     }
 
     @FXML
@@ -147,18 +159,6 @@ public class InsumosController implements Initializable{
            catch(Exception e){
             System.out.println("Error al conectar: "+e);
             }
-    }
-
-    @FXML
-    public void regresar(ActionEvent event) throws IOException {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("/espol/edu/ec/gui/fxml/VentanaAdministrador.fxml"));
-        Stage stage=new Stage(); 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("BIENVENIDO");
-        stage.show();
     }
 
     @FXML
