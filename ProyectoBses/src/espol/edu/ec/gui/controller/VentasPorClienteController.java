@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 
 public class VentasPorClienteController {
 
-        @FXML
+    @FXML
     private TableView<Implemento> tableDetallesInsumosCliente;
 
     @FXML
